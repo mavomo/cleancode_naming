@@ -2,14 +2,14 @@ package fr.cleancode;
 
 public class PrimePrinter {
 
-    private static final int MAXIMUM = 121;
+    private static final int FIRST_PRIMES_LIMIT = 121;
     private static final int NB_ROWS = 30;
     private static final int NB_COLUMNS = 4;
-    private static final int ORDMAX = 9;
+    private static final int MAX_SQUARE_ROOT = 9;
 
     public static void main(String[] args) {
-        int[] primesNumbers = generatePrimesUpTo(MAXIMUM);
-        printPrimes(MAXIMUM, primesNumbers);
+        int[] primesNumbers = generatePrimesUpTo(FIRST_PRIMES_LIMIT);
+        printPrimes(FIRST_PRIMES_LIMIT, primesNumbers);
     }
 
     private static void printPrimes(int maximum, int[] primesNumbers) {
@@ -25,7 +25,7 @@ public class PrimePrinter {
     }
 
     private static int[] generatePrimesUpTo(int maxPrimes) {
-        int eligiblePrime = 1;
+        int nextEligiblePrime = 1;
         int numberOfPrimes = 1;
         int primesNumberOrder = 2;
         int squareOfNextEligiblePrime = 9;
@@ -36,45 +36,49 @@ public class PrimePrinter {
         while (maxPrimesNotReached(maxPrimes, numberOfPrimes)) {
             boolean isPrime;
             do {
-                eligiblePrime += 2;
-                if (eligiblePrime == squareOfNextEligiblePrime) {
+                nextEligiblePrime += 2;
+                if (nextEligiblePrime == squareOfNextEligiblePrime) {
                     primesNumberOrder++;
                     squareOfNextEligiblePrime = nextMinSquare(primesNumbers[primesNumberOrder]);
-                    multiplesOfPrimes[primesNumberOrder - 1] = eligiblePrime;
+                    multiplesOfPrimes[primesNumberOrder - 1] = nextEligiblePrime;
                 }
 
-                isPrime = hasFoundNextPrime(eligiblePrime, primesNumberOrder, primesNumbers, multiplesOfPrimes);
+                isPrime = hasFoundNextPrime(nextEligiblePrime, primesNumberOrder, primesNumbers, multiplesOfPrimes);
             } while (!isPrime);
             numberOfPrimes++;
-            primesNumbers[numberOfPrimes] = eligiblePrime;
+            primesNumbers[numberOfPrimes] = nextEligiblePrime;
         }
         return primesNumbers;
     }
 
     private static int[] initializeMultiplesOfPrimes() {
-        return new int[ORDMAX + 1];
+        return new int[MAX_SQUARE_ROOT + 1];
     }
 
     private static boolean hasFoundNextPrime(int eligiblePrime, int ORD, int[] primesNumbers, int[] multiplesOfPrimes) {
-        int currentPrime = 2;
+        int nextPrime = 2;
         boolean isPrime = true;
-        while (currentPrime < ORD && isPrime) {
-            while (multiplesOfPrimes[currentPrime] < eligiblePrime) {
-                multiplesOfPrimes[currentPrime] += nextMultipleOfPrime(primesNumbers[currentPrime]);
+        while (nextPrime < ORD && isPrime) {
+            while (isAMultipleofPrime(eligiblePrime, multiplesOfPrimes[nextPrime])) {
+                multiplesOfPrimes[nextPrime] += nextMultipleOfPrime(primesNumbers[nextPrime]);
             }
-            if (isAFactorOfPrime(eligiblePrime, multiplesOfPrimes[currentPrime])) {
+            if (isDivisibleByPrime(eligiblePrime, multiplesOfPrimes[nextPrime])) {
                 isPrime = false;
             }
-            currentPrime++;
+            nextPrime++;
         }
         return isPrime;
+    }
+
+    private static boolean isAMultipleofPrime(int eligiblePrime, int multiplesOfPrime) {
+        return multiplesOfPrime < eligiblePrime;
     }
 
     private static int nextMultipleOfPrime(int firstPrime) {
         return firstPrime + firstPrime;
     }
 
-    private static boolean isAFactorOfPrime(int eligiblePrime, int multiplesOfPrime) {
+    private static boolean isDivisibleByPrime(int eligiblePrime, int multiplesOfPrime) {
         return multiplesOfPrime == eligiblePrime;
     }
 
