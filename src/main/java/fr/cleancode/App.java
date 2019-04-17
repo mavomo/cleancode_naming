@@ -7,6 +7,7 @@ import static fr.cleancode.App.AppHelper.runApp;
  * This class generates prime numbers up to a user specified maximum.
  * The algorithm used is the Sieve of Erastosthenes.
  */
+
 public class App 
 {
     public static void main( String[] args )
