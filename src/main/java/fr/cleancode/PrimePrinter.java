@@ -30,8 +30,8 @@ public class PrimePrinter {
         int primesNumberOrder = 2;
         int squareOfNextEligiblePrime = 9;
 
-        int[] primesNumbers = initialiseSieve(maxPrimes);
-        int[] multiplesOfPrimes = initialiseMultiplesOfPrimes(ORDMAX);
+        int[] primesNumbers = initializeSieve(maxPrimes);
+        int[] multiplesOfPrimes = initializeMultiplesOfPrimes();
 
         while (maxPrimesNotReached(maxPrimes, numberOfPrimes)) {
             boolean isPrime;
@@ -42,6 +42,7 @@ public class PrimePrinter {
                     squareOfNextEligiblePrime = nextMinSquare(primesNumbers[primesNumberOrder]);
                     multiplesOfPrimes[primesNumberOrder - 1] = eligiblePrime;
                 }
+
                 isPrime = hasFoundNextPrime(eligiblePrime, primesNumberOrder, primesNumbers, multiplesOfPrimes);
             } while (!isPrime);
             numberOfPrimes++;
@@ -50,7 +51,7 @@ public class PrimePrinter {
         return primesNumbers;
     }
 
-    private static int[] initialiseMultiplesOfPrimes(int ORDMAX) {
+    private static int[] initializeMultiplesOfPrimes() {
         return new int[ORDMAX + 1];
     }
 
@@ -69,15 +70,15 @@ public class PrimePrinter {
         return isPrime;
     }
 
-    private static int nextMultipleOfPrime(int fistPrime) {
-        return fistPrime + fistPrime;
+    private static int nextMultipleOfPrime(int firstPrime) {
+        return firstPrime + firstPrime;
     }
 
     private static boolean isAFactorOfPrime(int eligiblePrime, int multiplesOfPrime) {
         return multiplesOfPrime == eligiblePrime;
     }
 
-    private static int[] initialiseSieve(int maxPrimes) {
+    private static int[] initializeSieve(int maxPrimes) {
         int primesNumbers[] = new int[maxPrimes + 1];
         primesNumbers[1] = 2;
         return primesNumbers;
