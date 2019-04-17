@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.io.*;
 
 
-public class AppTest {
+public class PrimePrinterTest {
     private PrintStream out;
     private static final String GOLD = "gold_n_121.txt";
     private static final String LEAD = "lead_n_121.txt";
@@ -26,7 +26,7 @@ public class AppTest {
 
     @Test
     public void makeSureOutputMatchesGold() throws Exception {
-        App.main(new String[0]);
+        PrimePrinter.main(new String[0]);
 
         BufferedReader goldReader = new BufferedReader(new FileReader(getFileToRead(GOLD)));
         BufferedReader leadReader = new BufferedReader(new FileReader(LEAD));
