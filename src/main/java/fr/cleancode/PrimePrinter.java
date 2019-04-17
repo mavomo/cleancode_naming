@@ -1,11 +1,5 @@
 package fr.cleancode;
 
-
-/**
- * This class generates prime numbers up to a user specified maximum.
- * The algorithm used is the Sieve of Erastosthenes.
- */
-
 public class PrimePrinter {
 
     private static final int MAXIMUM = 121;
