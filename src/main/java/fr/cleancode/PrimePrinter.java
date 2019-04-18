@@ -2,17 +2,17 @@ package fr.cleancode;
 
 public class PrimePrinter {
 
-    private static final int FIRST_PRIMES_LIMIT = 121;
+    private static final int LIMIT = 121;
     private static final int NB_ROWS = 30;
     private static final int NB_COLUMNS = 4;
     private static final int ORD_MAX = 9;
 
     public static void main(String[] args) {
-        int[] primesNumbers = generateFirstPrimesUpTo(FIRST_PRIMES_LIMIT);
-        printPrimes(FIRST_PRIMES_LIMIT, primesNumbers);
+        int[] primesNumbers = generateFirstPrimesFor(LIMIT);
+        printPrimes(primesNumbers, LIMIT);
     }
 
-    private static void printPrimes(int maximum, int[] primesNumbers) {
+    private static void printPrimes(int[] primesNumbers, int maximum) {
         int pageNumber = 1;
         int pageOffset = 1;
 
@@ -24,16 +24,16 @@ public class PrimePrinter {
         }
     }
 
-    private static int[] generateFirstPrimesUpTo(int  totalPrimes) {
+    private static int[] generateFirstPrimesFor(int totalPrimes) {
         int nextEligiblePrime = 1;
         int primesCounter = 1;
-        int ord = 2;
         int squareOfNextEligiblePrime = 9;
+        int ord = 2;
 
-        int[] primesNumbers = initializeSieve( totalPrimes);
+        int[] primesNumbers = initializeSieve(totalPrimes);
         int[] multiplesOfPrimes = initializeMultiplesOfPrimes();
 
-        while (maxPrimesNotReached( totalPrimes, primesCounter)) {
+        while (maxPrimesNotReached(totalPrimes, primesCounter)) {
             boolean isPrime;
             do {
                 nextEligiblePrime += 2;
