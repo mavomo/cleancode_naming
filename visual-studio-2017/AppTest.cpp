@@ -6,7 +6,7 @@
 using namespace ApprovalTests;
 using namespace std;
 
-class PrimesPrinter
+class App
 {
 public:
    void runApp()
@@ -69,15 +69,15 @@ public:
 };
 
 
-TEST_CASE("Primes printer - output matches gold")
+TEST_CASE("Makes sure output matches gold")
 {
 
     std::ostringstream oss;
     std::streambuf* p_cout_streambuf = std::cout.rdbuf();
     std::cout.rdbuf(oss.rdbuf());
 
-    PrimesPrinter primesPrinter;
-    primesPrinter.runApp();
+    App app;
+    app.runApp();
 
     std::cout.rdbuf(p_cout_streambuf);	
     
