@@ -4,10 +4,13 @@ Example of code written for computers and not for humans. Taken from Donald Knut
 
 This version uses ApprovalTests in C++ - see [ApprovalTests.cpp](https://github.com/approvals/ApprovalTests.cpp)
 
-You will need to install a Diff Tool:
+This repo was cloned and adapted from the [ApprovalTests.StarterProject](https://github.com/approvals/ApprovalTests.cpp.StarterProject)
 
 * For more information, see the [ApprovalTests.cpp User Guide](https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/README.md#top)
-* You will need a Diff tool.
+
+
+In order to produce your Golden master, I used (TortoiseGit)[https://tortoisegit.org/]
+You can install any other Diff tool:
 * Suggestions: 
     * Mac: [DiffMerge](https://sourcegear.com/diffmerge/)
     * Windows: [WinMerge](winmerge.org/)
